@@ -1,24 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
+// components
+import AutoComplete from './components/AutoComplete';
+import ChosensList from './components/ChosensList';
+
 function App() {
+  const [chosens, setChosens] = useState<string[]>([]);
+  const multiple: boolean = true;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='app'>
+      <div className='auto-complete'>
+        <AutoComplete
+          chosens={chosens}
+          setChosens={setChosens}
+          multiple={multiple}
+        />
+      </div>
+      {chosens.length !== 0 && (
+        <ChosensList chosens={chosens} multiple={multiple} />
+      )}
     </div>
   );
 }
